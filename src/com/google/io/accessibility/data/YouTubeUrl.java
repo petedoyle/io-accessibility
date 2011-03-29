@@ -6,6 +6,7 @@ import com.google.api.client.util.Key;
 public class YouTubeUrl extends GenericUrl {
 	@Key public final String alt = "jsonc";
 	@Key public String author;
+	@Key public Boolean caption;
 	
 	@Key("max-results")
 	public Integer maxResults;

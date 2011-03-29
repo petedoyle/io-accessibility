@@ -42,6 +42,8 @@ public class VideoListAdapter extends ArrayAdapter<Video> {
 			holder.title = (TextView) convertView.findViewById( R.id.video_list_row_title );
 			holder.description = (TextView) convertView.findViewById( R.id.video_list_row_description );
 			holder.bottom = (TextView) convertView.findViewById( R.id.video_list_row_bottom );
+			
+			convertView.setTag( holder );
 		} else {
 			holder = (ViewHolder) convertView.getTag();
 		}

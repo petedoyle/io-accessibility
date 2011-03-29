@@ -96,12 +96,16 @@ public class VideoListFragment extends ListFragment {
 
 					// build the YouTube URL
 					YouTubeUrl url = new YouTubeUrl( "https://gdata.youtube.com/feeds/api/videos" );
-					url.author = "searchstories";
-					url.maxResults = 2;
-
+//					url.author = "searchstories";
+					url.maxResults = 20;
+					url.caption = true;
+					
+					
 					// build the HTTP GET request
 					HttpRequest request = transport.buildGetRequest();
 					request.url = url;
+					
+					Log.v( TAG, "YouTube URL: " + url );
 
 					// execute the request and the parse video feed
 					VideoFeed feed = null;
