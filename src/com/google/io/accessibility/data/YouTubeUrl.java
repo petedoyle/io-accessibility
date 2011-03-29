@@ -8,6 +8,7 @@ public class YouTubeUrl extends GenericUrl {
 	@Key public String author;
 	@Key public Boolean caption;
 	@Key public String q; // Query string
+	@Key public Integer format;
 	
 	@Key("max-results")
 	public Integer maxResults;

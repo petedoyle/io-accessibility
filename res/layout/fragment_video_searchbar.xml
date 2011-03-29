@@ -20,5 +20,4 @@
 		android:layout_height="16dip"
 		android:layout_weight="1"
 		android:visibility="invisible" />
-
 </LinearLayout>

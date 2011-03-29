@@ -97,7 +97,7 @@ public class VideoListFragment extends ListFragment implements TextWatcher {
 
 					// set up the Google headers
 					GoogleHeaders headers = new GoogleHeaders();
-					headers.setApplicationName( "Google-YouTubeSample/1.0" );
+					headers.setApplicationName( "GoogleIO-Accessibility Demo/1.0" );
 					headers.gdataVersion = "2";
 
 					// set up the HTTP transport
@@ -114,7 +114,7 @@ public class VideoListFragment extends ListFragment implements TextWatcher {
 					YouTubeUrl url = new YouTubeUrl( "https://gdata.youtube.com/feeds/api/videos" );
 					
 					url.q = mQuery;
-//					url.author = "searchstories";
+					url.format = 6; // TODO: is there a HQ mobile format?
 					url.maxResults = 20;
 					url.caption = true;
 					
@@ -146,7 +146,7 @@ public class VideoListFragment extends ListFragment implements TextWatcher {
 
 		@Override
 		public void onLoadFinished(Loader<VideoFeed> loader, VideoFeed feed) {
-			if( null != feed ) {
+			if( null != feed && null != feed.items ) {
 				mAdapter.clear();
 	
 				for( Video video : feed.items ) {
