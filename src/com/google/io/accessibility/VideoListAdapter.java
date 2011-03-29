@@ -52,9 +52,6 @@ public class VideoListAdapter extends ArrayAdapter<Video> {
 
 		holder.title.setText( video.title );
 		holder.description.setText( video.description );
-		if( null != video.player ) {
-			holder.bottom.setText( video.player.defaultUrl );
-		}
 
 		return convertView;
 	}
