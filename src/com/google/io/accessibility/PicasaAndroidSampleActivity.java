@@ -110,11 +110,11 @@ public final class PicasaAndroidSampleActivity extends ListActivity {
 	public PicasaAndroidSampleActivity() {
 		// Use HttpClient for 2.2 and below, HttpUrlConnection otherwise
 		// (see http://javadoc.google-api-java-client.googlecode.com/hg/1.3.1-alpha/index.html?com/google/api/client/http/HttpTransport.html)
-//		if( android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.GINGERBREAD ) {
-//			transport = new NetHttpTransport(); // use HttpUrlConnection
-//		} else {
+		if( android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.GINGERBREAD ) {
+			transport = new NetHttpTransport(); // use HttpUrlConnection
+		} else {
 			transport = new ApacheHttpTransport(); // use Apache HttpClient
-//		}
+		}
 		GoogleHeaders headers = new GoogleHeaders();
 		headers.setApplicationName( "Google-PicasaAndroidSample/1.0" );
 		headers.gdataVersion = "2";

@@ -1,4 +1,25 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
+	<style name="TextAppearance.ListView.Row.Title" parent="@android:style/TextAppearance.Medium">
+		<item name="android:textSize">16dip</item>
+		<item name="android:textColor">@color/white</item>
+		<item name="android:textStyle">bold</item>
+		<item name="android:singleLine">true</item>
+		<item name="android:ellipsize">end</item>
+	</style>
+	
+	<style name="TextAppearance.ListView.Row.Description" parent="@android:style/TextAppearance.Medium">
+		<item name="android:textSize">13dip</item>
+		<item name="android:textColor">@color/white</item>
+		<item name="android:ellipsize">end</item>
+		<item name="android:lines">2</item>
+	</style>
+	
+	<style name="TextAppearance.ListView.Row.Bottom" parent="@android:style/TextAppearance.Medium">
+		<item name="android:textSize">13dip</item>
+		<item name="android:textColor">@color/white</item>
+		<item name="android:textStyle">bold</item>
+	</style>
+	
 	<style name="TextAppearance.ListView.Empty" parent="@android:style/TextAppearance.Medium">
 		<item name="android:textSize">16dip</item>
 	</style>
