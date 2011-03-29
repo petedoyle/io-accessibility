@@ -1,0 +1,5 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+	<style name="TextAppearance.ListView.Empty" parent="@android:style/TextAppearance.Medium">
+		<item name="android:textSize">16dip</item>
+	</style>
+</resources>
