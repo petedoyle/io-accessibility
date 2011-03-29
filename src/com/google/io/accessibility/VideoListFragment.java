@@ -96,6 +96,7 @@ public class VideoListFragment extends ListFragment {
 
 					// build the YouTube URL
 					YouTubeUrl url = new YouTubeUrl( "https://gdata.youtube.com/feeds/api/videos" );
+					url.q = "android";
 //					url.author = "searchstories";
 					url.maxResults = 20;
 					url.caption = true;

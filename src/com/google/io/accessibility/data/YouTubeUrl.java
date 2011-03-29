@@ -7,6 +7,7 @@ public class YouTubeUrl extends GenericUrl {
 	@Key public final String alt = "jsonc";
 	@Key public String author;
 	@Key public Boolean caption;
+	@Key public String q; // Query string
 	
 	@Key("max-results")
 	public Integer maxResults;
