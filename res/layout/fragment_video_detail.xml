@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="fill_parent"
+  android:layout_height="wrap_content"
+  android:orientation="vertical">
+  	
+  	<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:id="@+id/activity_detail_banner"
+	android:layout_width="fill_parent"
+	android:layout_height="60dip"
+	android:background="@drawable/gradient_header"
+	android:orientation="vertical">
+	  	<TextView
+			android:id="@+id/video_detail_title"
+			android:text=""
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:lines="1"
+			android:ellipsize="end"
+			android:textColor="#ffffffff"
+			android:textSize="18sp"
+			android:paddingTop="8dip"
+			android:paddingLeft="8dip"
+			android:paddingBottom="3dip"
+			android:paddingRight="8dip"
+			 />
+			 
+		<TextView
+			android:id="@+id/video_detail_description"
+			android:text=""
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:singleLine="true"
+			android:ellipsize="end"
+			android:textColor="#ffcccccc" 
+			android:textSize="15dip"
+			android:paddingLeft="8dip"
+			android:paddingBottom="8dip"
+			android:paddingRight="8dip"
+			/>
+	</LinearLayout>
+  
+ 	<Button android:id="@+id/video_detail_play_button" 
+ 		android:text="Play video"
+ 		android:contentDescription="Play video"
+ 		android:layout_width="wrap_content" 
+ 		android:layout_height="wrap_content"
+ 		android:paddingLeft="30dip"
+		android:paddingRight="30dip"
+		android:focusable="true"
+		android:nextFocusLeft="@+id/video_detail_share_button"
+		android:nextFocusDown="@+id/video_detail_share_button" />
+		
+	<Button android:id="@+id/video_detail_share_button" 
+ 		android:text="Share video"
+ 		android:layout_width="wrap_content" 
+ 		android:layout_height="wrap_content"
+ 		android:paddingLeft="30dip"
+		android:paddingRight="30dip"
+		android:focusable="true"
+		android:nextFocusRight="@id/video_detail_play_button"
+		android:nextFocusUp="@id/video_detail_play_button" />
+</LinearLayout>

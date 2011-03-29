@@ -4,9 +4,4 @@
 	android:layout_width="fill_parent"
 	android:layout_height="fill_parent">
 	
-	<fragment
-		class="com.google.io.accessibility.VideoListFragment"
-		android:id="@+id/fragment_video_list_container"
-		android:layout_width="fill_parent"
-		android:layout_height="fill_parent" />
 </FrameLayout>

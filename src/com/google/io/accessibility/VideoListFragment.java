@@ -2,6 +2,25 @@ package com.google.io.accessibility;
 
 import java.io.IOException;
 
+import android.app.Activity;
+import android.app.FragmentTransaction;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.ListFragment;
+import android.support.v4.content.Loader;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.ProgressBar;
+import android.widget.Toast;
+
 import com.google.api.client.googleapis.GoogleHeaders;
 import com.google.api.client.googleapis.json.JsonCParser;
 import com.google.api.client.http.HttpRequest;
@@ -14,24 +33,6 @@ import com.google.io.accessibility.data.VideoFeed;
 import com.google.io.accessibility.data.YouTubeUrl;
 import com.google.io.accessibility.util.IncrementalAsyncTaskLoaderCallbacks;
 import com.google.io.accessibility.util.YouTubeLoader;
-
-import android.app.Activity;
-import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.ListFragment;
-import android.support.v4.content.Loader;
-import android.text.Editable;
-import android.text.TextUtils;
-import android.text.TextWatcher;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.EditText;
-import android.widget.ProgressBar;
-import android.widget.SearchView;
-import android.widget.Toast;
-import android.widget.SearchView.OnQueryTextListener;
 
 public class VideoListFragment extends ListFragment implements TextWatcher {
 	private static final String TAG = VideoListFragment.class.getSimpleName();
@@ -68,6 +69,21 @@ public class VideoListFragment extends ListFragment implements TextWatcher {
 		mProgressBar = (ProgressBar) view.findViewById( R.id.search_progress );
 		mSearchBox.addTextChangedListener( this );
 		return view;
+	}
+
+	@Override
+	public void onListItemClick(ListView l, View v, int position, long id) {
+		super.onListItemClick( l, v, position, id );
+		
+		Video video = mAdapter.getItem( position );
+		
+		Fragment fragment = VideoDetailFragment.newInstance( video );
+		getFragmentManager()
+			.beginTransaction()
+			.replace( R.id.main_layout, fragment )
+			.addToBackStack( null )
+			.setTransition( FragmentTransaction.TRANSIT_FRAGMENT_OPEN )
+			.commit();
 	}
 
 	@Override
@@ -117,7 +133,6 @@ public class VideoListFragment extends ListFragment implements TextWatcher {
 					url.format = 6; // TODO: is there a HQ mobile format?
 					url.maxResults = 20;
 					url.caption = true;
-					
 					
 					// build the HTTP GET request
 					HttpRequest request = transport.buildGetRequest();
