@@ -3,4 +3,7 @@
 	<!-- Standard colors -->
 	<color name="black">#FF000000</color>
 	<color name="white">#FFFFFFFF</color>
+	
+	<color name="headerGradientTop">#FF777777</color>
+	<color name="headerGradientBottom">#FF444444</color>
 </resources>

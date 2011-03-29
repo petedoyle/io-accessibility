@@ -20,17 +20,29 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.ListFragment;
 import android.support.v4.content.Loader;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.ProgressBar;
+import android.widget.SearchView;
 import android.widget.Toast;
+import android.widget.SearchView.OnQueryTextListener;
 
-public class VideoListFragment extends ListFragment {
+public class VideoListFragment extends ListFragment implements TextWatcher {
 	private static final String TAG = VideoListFragment.class.getSimpleName();
 
 	private VideoListAdapter mAdapter;
 	private YouTubeLoaderCallbacks mCallbacks;
+	
+	private EditText mSearchBox;
+	private ProgressBar mProgressBar;
+	
+	private String mQuery;
 
 	@Override
 	public void onAttach(Activity activity) {
@@ -52,6 +64,9 @@ public class VideoListFragment extends ListFragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View view = inflater.inflate( R.layout.fragment_video_list, container, false );
 
+		mSearchBox = (EditText) view.findViewById( R.id.search_box );
+		mProgressBar = (ProgressBar) view.findViewById( R.id.search_progress );
+		mSearchBox.addTextChangedListener( this );
 		return view;
 	}
 
@@ -72,6 +87,7 @@ public class VideoListFragment extends ListFragment {
 	private class YouTubeLoaderCallbacks implements IncrementalAsyncTaskLoaderCallbacks<Void, VideoFeed> {
 		@Override
 		public Loader<VideoFeed> onCreateLoader(int id, Bundle args) {
+			
 			return new YouTubeLoader( getActivity(), this ) {
 				@Override
 				public VideoFeed loadInBackground() {
@@ -96,7 +112,8 @@ public class VideoListFragment extends ListFragment {
 
 					// build the YouTube URL
 					YouTubeUrl url = new YouTubeUrl( "https://gdata.youtube.com/feeds/api/videos" );
-					url.q = "android";
+					
+					url.q = mQuery;
 //					url.author = "searchstories";
 					url.maxResults = 20;
 					url.caption = true;
@@ -148,10 +165,14 @@ public class VideoListFragment extends ListFragment {
 
 		@Override
 		public void onLoaderReset(Loader<VideoFeed> feed) {
+			mProgressBar.setEnabled( false );
+			mProgressBar.setVisibility( View.INVISIBLE );
 		}
 
 		@Override
 		public void onPreExecute() {
+			mProgressBar.setEnabled( true );
+			mProgressBar.setVisibility( View.VISIBLE );
 		}
 
 		@Override
@@ -160,6 +181,23 @@ public class VideoListFragment extends ListFragment {
 
 		@Override
 		public void onPostExecute(VideoFeed result) {
+			mProgressBar.setEnabled( false );
+			mProgressBar.setVisibility( View.INVISIBLE );
 		}
 	}
+
+	@Override
+	public void afterTextChanged(Editable s) {
+	}
+
+	@Override
+	public void beforeTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) {
+	}
+
+	@Override
+	public void onTextChanged(CharSequence newQuery, int start, int before, int count) {
+		mQuery = !TextUtils.isEmpty( newQuery ) ? newQuery.toString() : null;
+		getLoaderManager().restartLoader( 0, null, mCallbacks );
+	}
+	
 }

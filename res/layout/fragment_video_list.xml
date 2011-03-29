@@ -4,6 +4,10 @@
 	android:layout_width="fill_parent"
 	android:layout_height="fill_parent">
 
+	<include
+		layout="@layout/fragment_video_searchbar"
+		android:id="@+id/search_bar" />
+
 	<ListView 
 		android:id="@+id/android:list"
 		android:layout_width="fill_parent"
