@@ -68,6 +68,7 @@ public class VideoListFragment extends ListFragment implements TextWatcher {
 		mSearchBox = (EditText) view.findViewById( R.id.search_box );
 		mProgressBar = (ProgressBar) view.findViewById( R.id.search_progress );
 		mSearchBox.addTextChangedListener( this );
+		mSearchBox.requestFocus();
 		return view;
 	}
 
