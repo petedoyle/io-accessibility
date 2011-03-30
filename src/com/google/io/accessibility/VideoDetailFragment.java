@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -66,8 +67,15 @@ public class VideoDetailFragment extends Fragment {
 		mPlayButton.setOnClickListener( new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Intent intent = new Intent( Intent.ACTION_VIEW, Uri.parse( mVideo.player.defaultUrl ) );
-
+				// The YouTube app's IntentFilter doesn't see https links, so
+				// we convert them to http links here.
+				Uri httpUri = Uri.parse( mVideo.player.defaultUrl )
+					.buildUpon()
+					.scheme( "http" )
+					.build();
+				Log.e( TAG, "Loading youtube url: " + httpUri );
+				
+				Intent intent = new Intent( Intent.ACTION_VIEW, httpUri );
 				startActivity( intent );
 			}
 		} );
