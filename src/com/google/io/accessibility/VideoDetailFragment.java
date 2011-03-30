@@ -71,6 +71,7 @@ public class VideoDetailFragment extends Fragment {
 				startActivity( intent );
 			}
 		} );
+		mPlayButton.requestFocus();
 
 		mShareButton.setOnClickListener( new OnClickListener() {
 			@Override
